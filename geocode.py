@@ -1,14 +1,11 @@
 import geocoder
 import emoji
-from secrets import json_secret
 from events import get_events, update_event
 
-API_KEY = json_secret('google', 'api_key')
-CAL_ID = json_secret('calendar', 'id')
-
 class Calendar:
-    def __init__(self, cal_id=CAL_ID):
+    def __init__(self, cal_id, api_key):
         self.cal_id = cal_id
+        self.api_key = api_key
         self.events = get_events(self.cal_id)
         self.check_all_events()
 
@@ -38,7 +35,7 @@ class Calendar:
     def search_country(self, event):
         place = self.cleanup_title(event)
         print(f"Checking results for {place}..")
-        result = geocoder.google(place, key=API_KEY)
+        result = geocoder.google(place, key=self.api_key)
         print(f"Found country: {result.country_long}.")
         return result
 
@@ -60,6 +57,6 @@ class Calendar:
         country_flag = emoji.emojize(f":{country.country_long}:")
         print(f"Adding country to {title}")
         event['summary'] = f"{country_flag} {title}"
-        update_event(CAL_ID, event['id'], event)
+        update_event(self.cal_id, event['id'], event)
 
 a = Calendar()
