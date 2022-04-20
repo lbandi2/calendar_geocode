@@ -58,5 +58,3 @@ class Calendar:
         print(f"Adding country to {title}")
         event['summary'] = f"{country_flag} {title}"
         update_event(self.cal_id, event['id'], event)
-
-a = Calendar()
