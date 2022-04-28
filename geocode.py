@@ -45,7 +45,7 @@ class Calendar:
             if not self.has_country(event):
                 self.update_event(event)
             else:
-                print(f'Skipping {title}')
+                print(f'Skipping {title.encode("utf-8")}')
 
     def update_event(self, event):
         country = self.search_country(event)
