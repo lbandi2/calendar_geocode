@@ -14,7 +14,7 @@ def get_events(calendar_id):
 
     return events
 
-def update_cal_event(calendar_id, event_id, dict):
+def update_event(calendar_id, event_id, dict):
     service = get_calendar_service()
     try:
         response = service.events().update(calendarId=calendar_id, eventId=event_id, body=dict).execute()
