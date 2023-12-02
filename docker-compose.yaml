@@ -1,0 +1,15 @@
+version: '3.8'
+services:
+  calendar_geocode:
+    build: .
+    container_name: calendar_geocode
+    volumes:
+      # google credentials
+      - type: bind
+        source: .\creds
+        target: /tmp/calendar_geocode
+      # for .env file
+      - type: bind
+        source: .
+        target: /app
+    env_file: .env

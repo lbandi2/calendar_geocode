@@ -1,0 +1,7 @@
+creds
+env
+__pycache__
+.env
+Dockerfile
+docker-compose.yaml
+*.code-workspace
